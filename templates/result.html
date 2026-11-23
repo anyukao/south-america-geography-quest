@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Ваш результат{% endblock %}
+{% block content %}
+<section class="result-card">
+  <div class="eyebrow">ЭКСПЕДИЦИЯ ЗАВЕРШЕНА</div>
+  <h1>Отличная работа, {{ row.student_name }}!</h1>
+  <p class="lead dark">Класс: {{ row.class_name }}</p>
+  <div class="score">{{ row.score }} <span>/ {{ row.total }}</span></div>
+  <h2>{% if row.score == row.total %}Превосходно!{% elif row.score >= row.total * 0.7 %}Хороший результат!{% elif row.score >= row.total * 0.5 %}Неплохо, продолжай изучать!{% else %}Повтори станции и попробуй ещё раз.{% endif %}</h2>
+  <p>Твой результат сохранён и доступен учителю в таблице результатов.</p>
+</section>
+<section class="content-card">
+  <h2>Разбор ответов</h2>
+  {% for q in questions %}
+  <div class="answer-review">
+    <strong>{{ loop.index }}. {{ q.question }}</strong>
+    <p class="{{ 'correct' if answers[loop.index0].correct else 'incorrect' }}">
+      {{ 'Верно' if answers[loop.index0].correct else 'Неверно' }}
+    </p>
+    <small>{{ q.explanation }}</small>
+  </div>
+  {% endfor %}
+  <a class="button" href="{{ url_for('index') }}">На главную</a>
+</section>
+{% endblock %}

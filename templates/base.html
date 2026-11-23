@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Экспедиция по Южной Америке{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="{{ url_for('index') }}">🌎 Географический квест</a>
+  <a class="teacher-link" href="{{ url_for('teacher_login') }}">Для учителя</a>
+</header>
+<main class="container">
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}<div class="notice">{% for message in messages %}{{ message }}{% endfor %}</div>{% endif %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+</main>
+<footer>География • 7 класс • История исследования Южной Америки</footer>
+</body>
+</html>

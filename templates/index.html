@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div class="eyebrow">ЦИФРОВАЯ ЭКСПЕДИЦИЯ · 7 КЛАСС</div>
+  <h1>Тайны исследования<br>Южной Америки</h1>
+  <p class="lead">Стань исследователем: изучи путешественников, открой важные факты и проверь свои знания.</p>
+  <a class="button" href="{{ url_for('station', slug=stations[0].slug) }}">Начать квест →</a>
+</section>
+<section class="section-head">
+  <h2>Маршрут экспедиции</h2>
+  <p>Пройди пять исследовательских станций по порядку.</p>
+</section>
+<div class="station-grid">
+  {% for s in stations %}
+  <a class="station-card" href="{{ url_for('station', slug=s.slug) }}">
+    <span class="station-number">СТАНЦИЯ {{ loop.index }}</span>
+    <h3>{{ s.name }}</h3>
+    <p>{{ s.tagline }}</p>
+    <span class="small">{{ s.years }}</span>
+  </a>
+  {% endfor %}
+</div>
+<section class="bottom-cta">
+  <h2>Готов проверить себя?</h2>
+  <p>После изучения всех станций выполни итоговую викторину.</p>
+  <a class="button button-light" href="{{ url_for('quiz') }}">Перейти к викторине</a>
+</section>
+{% endblock %}
