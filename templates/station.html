@@ -1,24 +1,32 @@
 {% extends "base.html" %}
-{% block title %}{{ station.name }} — квест{% endblock %}
+{% block title %}{{ station.name }} — исследование Южной Америки{% endblock %}
 {% block content %}
 <div class="progress-label">ИССЛЕДОВАТЕЛЬСКАЯ СТАНЦИЯ</div>
 <section class="content-card">
   <div class="eyebrow">{{ station.years }}</div>
   <h1>{{ station.name }}</h1>
   <h3 class="subtitle">{{ station.tagline }}</h3>
-  <p class="reading">{{ station.text }}</p>
-  <div class="fact-box"><strong>Запомни:</strong> {{ station.fact }}</div>
-  <div class="reflection">
-    <strong>Задание исследователя</strong>
-    <p>Назови главный вклад этого путешественника или учёного в изучение Южной Америки. Подготовь ответ для своей группы.</p>
+  <p class="reading">{{ station.intro }}</p>
+
+  {% if station.expeditions %}
+  <div class="expedition-section">
+    <h2>Экспедиции и путешествия</h2>
+    <ul class="expedition-list">
+      {% for expedition in station.expeditions %}
+      <li>{{ expedition }}</li>
+      {% endfor %}
+    </ul>
   </div>
+  {% endif %}
+
+  <div class="fact-box"><strong>Историческое значение:</strong> {{ station.significance }}</div>
   <div class="nav-buttons">
     {% set idx = stations.index(station) %}
     {% if idx > 0 %}<a class="button button-secondary" href="{{ url_for('station', slug=stations[idx-1].slug) }}">← Назад</a>{% endif %}
     {% if idx < stations|length - 1 %}
       <a class="button" href="{{ url_for('station', slug=stations[idx+1].slug) }}">Следующая станция →</a>
     {% else %}
-      <a class="button" href="{{ url_for('quiz') }}">К итоговой викторине →</a>
+      <a class="button" href="{{ url_for('index') }}">Вернуться к маршруту →</a>
     {% endif %}
   </div>
 </section>

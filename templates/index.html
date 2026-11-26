@@ -3,12 +3,12 @@
 <section class="hero">
   <div class="eyebrow">ЦИФРОВАЯ ЭКСПЕДИЦИЯ · 7 КЛАСС</div>
   <h1>Тайны исследования<br>Южной Америки</h1>
-  <p class="lead">Стань исследователем: изучи путешественников, открой важные факты и проверь свои знания.</p>
-  <a class="button" href="{{ url_for('station', slug=stations[0].slug) }}">Начать квест →</a>
+  <p class="lead">Изучи историю открытия и исследования Южной Америки, познакомься с путешественниками и их экспедициями.</p>
+  <a class="button" href="{{ url_for('station', slug=stations[0].slug) }}">Начать путешествие →</a>
 </section>
 <section class="section-head">
   <h2>Маршрут экспедиции</h2>
-  <p>Пройди пять исследовательских станций по порядку.</p>
+  <p>Переходи между станциями и знакомься с исследователями материка.</p>
 </section>
 <div class="station-grid">
   {% for s in stations %}
@@ -20,9 +20,4 @@
   </a>
   {% endfor %}
 </div>
-<section class="bottom-cta">
-  <h2>Готов проверить себя?</h2>
-  <p>После изучения всех станций выполни итоговую викторину.</p>
-  <a class="button button-light" href="{{ url_for('quiz') }}">Перейти к викторине</a>
-</section>
 {% endblock %}
